@@ -6,7 +6,7 @@ import visualize
 import sys
 import time
 import subprocess
- 
+
 MONITOR=os.path.basename(os.getcwd())
 
 def processlist(modelname):
@@ -19,18 +19,18 @@ def processlist(modelname):
 def loop(modelname,option,batch=False):
 
     if batch == True:
-        print 'switching to batch'	
-        ROOT.gROOT.SetBatch(True) 
+        print 'switching to batch'
+        ROOT.gROOT.SetBatch(True)
 
     m=visualize.ModelVisualizer(modelname)
     i = 0
 
     while(1):
-    
+
         filelist=subprocess.check_output(["ls", modelname + '_mesh']).split()
         # nice, but filelist is ordered alphabetically. want sort on time which we expect (!) is the last field
         sortlist=sorted(filelist, key=lambda item: (float(item.split('_')[-2]) ))
-        
+
         if (i == len(sortlist) ): break
         if (len(sortlist) > 0):
             timestring = sortlist[i].split('_')[-2]
@@ -39,7 +39,7 @@ def loop(modelname,option,batch=False):
                 m.showfile( modelname + '_mesh' + '/' + sortlist[i], runningtext = 't = ' + timestring, colorlegend = [1e-6,1, 100])
             else:
                 m.showfile( modelname + '_mesh' + '/' + sortlist[i], pdfname=sortlist[i], runningtext = 't = ' + timestring, colorlegend = [1e-6,1.,100])
-                
+
             i+=1
 
 if __name__ == "__main__":
@@ -48,4 +48,4 @@ if __name__ == "__main__":
     if len(sys.argv) == 3:
         loop(sys.argv[1],'y')
     if len(sys.argv) == 4:
-	loop(sys.argv[1],'y',True)
+	    loop(sys.argv[1],'y',True)

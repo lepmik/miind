@@ -81,7 +81,7 @@ def read_fiducial(fn):
     return patches
 
 def extract_base(fn):
-    return fn.split('.')[0].split('_')[-6]
+    return fn.replace('.lost', '').split('_')[-6]
 
 if __name__ == "__main__":
     backend = matplotlib.get_backend().lower()
