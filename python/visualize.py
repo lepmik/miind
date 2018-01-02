@@ -204,8 +204,7 @@ class Visualizer:
         self.SetYTitle(ylabel)
 
         mi, ma, vals = self.colscale(dens,colorlegend)
-        if colorlegend is not None:
-            self.__draw_colorbar__(colorlegend, mi, ma)
+        self.__draw_colorbar__(colorlegend, mi, ma)
 
 
         # at this stage, there should be a 1-1 correspondence between norm elements and self_geom elements

@@ -242,7 +242,7 @@ namespace TwoDLib {
 		if (_n_steps == 0){
 		  // since n_steps == 0, time is the network time step
 			double n = (time - _t_cur)/_dt;
-		    
+
 			_n_steps = static_cast<MPILib::Number>(round(n));
 			if (_n_steps == 0){
 
